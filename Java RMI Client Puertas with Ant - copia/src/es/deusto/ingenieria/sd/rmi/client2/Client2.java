@@ -1,12 +1,12 @@
-package es.deusto.ingenieria.sd.rmi.client;
+package es.deusto.ingenieria.sd.rmi.client2;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import es.deusto.ingenieria.sd.rmi.server.IServer;
-import es.deusto.ingenieria.sd.rmi.server.InvalidUser;
+import es.deusto.ingenieria.sd.rmi.server2.IServer2;
+import es.deusto.ingenieria.sd.rmi.server2.InvalidUser2;
 
-public class Client {
+public class Client2 {
 
 	public static void main(String[] args) {
 		if (args.length != 3) 
@@ -20,7 +20,7 @@ public class Client {
 		//	System.setSecurityManager(new SecurityManager());
 		//}
 
-		IServer stubServer = null;
+		IServer2 stubServer = null;
 		/**
 		 * Try test message
 		 */
@@ -29,7 +29,7 @@ public class Client {
 			Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
 			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
 			//stubServer = (IServer) java.rmi.Naming.lookup(name);
-			stubServer = (IServer) registry.lookup(name);
+			stubServer = (IServer2) registry.lookup(name);
 			System.out.println("* Message coming from the server: '" + stubServer.sayHello() + "'");
 			
 		} 
@@ -57,7 +57,7 @@ public class Client {
 			stubServer.registerUser("Test3", "Test3");
 			System.out.println("* Added user Test3");
 		}
-		catch (InvalidUser iu)
+		catch (InvalidUser2 iu)
 		{
 			System.err.println("- Exception running the client: " + iu.getErrorMessage());
 		}
@@ -79,7 +79,7 @@ public class Client {
 			System.out.println("* Message coming from the server: " + stubServer.sayMessage("Test3", "Test4", "Message 4"));
 			System.out.println("* Message coming from the server: " + stubServer.sayMessage("Test4", "Test4", "Message 5"));
 		}
-		catch (InvalidUser iu)
+		catch (InvalidUser2 iu)
 		{
 			System.err.println("- Exception running the client: " + iu.getErrorMessage());
 		}

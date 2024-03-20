@@ -1,9 +1,9 @@
-package es.deusto.ingenieria.sd.rmi.server;
+package es.deusto.ingenieria.sd.rmi.server2;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface IServer extends Remote 
+public interface IServer2 extends Remote 
 {
 	/**
 	 * Test message to say hello to client
@@ -21,7 +21,7 @@ public interface IServer extends Remote
 	 * @return Message
 	 * @throws RemoteException
 	 */
-	String sayMessage(String login, String password, String message) throws RemoteException, InvalidUser;
+	String sayMessage(String login, String password, String message) throws RemoteException, InvalidUser2;
 	
 	/**
 	 * Function to register a new user
@@ -29,7 +29,6 @@ public interface IServer extends Remote
 	 * @param password
 	 * @throws RemoteException
 	 */
-	void registerUser(String login, String password) throws RemoteException, InvalidUser;
+	void registerUser(String login, String password) throws RemoteException, InvalidUser2;
 
-	//public String obtenerApartamentos(String url, String token);
 }

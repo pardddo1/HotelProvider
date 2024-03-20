@@ -5,7 +5,8 @@
    	<property name="build.dir" location="bin"/>
 	<property name="dist.dir" location="dist"/>
 	<property name="classpath" location="bin"/>
-	<property name="server.port" value="1099"/> 
+	<property name="server.port" value="2000"/>
+	<property name="server.port2" value="1099"/> 
 	<property name="server.IP" value="127.0.0.1"/>
 	<property name="server.Name" value="HelloServer"/>
 	<property name="export.file" value="helloServer.jar"/>
@@ -34,6 +35,17 @@
         	<arg value="${server.IP}"/> 
 	 		<arg value="${server.port}"/> 
 			<arg value="${server.Name}"/> 
+        </java>
+    </target>
+
+		<target name="server2" depends="build" description="Runs the Server">
+		<java classname="es.deusto.ingenieria.sd.rmi.server2.Server2" classpath="${classpath}" fork="true">
+			<jvmarg value="-Djava.rmi.server.codebase=file:${build.dir}/"/>
+			<jvmarg value="-Djava.security.policy=${policy.file}"/>			
+        	<arg value="${server.IP}"/> 
+	 		<arg value="${server.port2}"/> 
+			<arg value="${server.Name}"/> 
+			
         </java>
     </target>
 </project>

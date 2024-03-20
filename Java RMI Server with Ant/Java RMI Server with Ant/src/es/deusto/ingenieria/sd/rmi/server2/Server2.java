@@ -1,4 +1,4 @@
-package es.deusto.ingenieria.sd.rmi.server;
+package es.deusto.ingenieria.sd.rmi.server2;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -7,20 +7,17 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.server.*;
 import java.util.HashMap;
-//import Server; //netstat ano | findstr :port
 
-public class Server extends UnicastRemoteObject implements IServer {
+public class Server2 extends UnicastRemoteObject implements IServer2 {
 
 	private static final long serialVersionUID = 1L;
 	private int cont = 0;
 	private HashMap <String, String> registeredUsers = null;
-	//private ConexionAPI conexionAPI;
 
-	protected Server() throws RemoteException 
+	protected Server2() throws RemoteException 
 	{
 		super();
 		registeredUsers = new HashMap<String, String> ();
-		//this.conexionAPI = new ConexionAPI();
 	}
 
 	@Override
@@ -32,40 +29,30 @@ public class Server extends UnicastRemoteObject implements IServer {
 	}
 	
 	@Override
-	public String sayMessage(String login, String password, String message) throws RemoteException, InvalidUser
+	public String sayMessage(String login, String password, String message) throws RemoteException, InvalidUser2
 	{
 		if (registeredUsers.containsValue(login)) {
 
 			if (registeredUsers.get(login).contentEquals(password)) {
 				return message;
 			} else {
-				throw new InvalidUser("Incorrect password for user " + login);
+				throw new InvalidUser2("Incorrect password for user " + login);
 			}
 
 		} else {
-			throw new InvalidUser("User name " + login + "is not present among the registered users");
+			throw new InvalidUser2("User name " + login + "is not present among the registered users");
 		}
 	}
 
 	@Override
-	public void registerUser(String login, String password) throws RemoteException, InvalidUser 
+	public void registerUser(String login, String password) throws RemoteException, InvalidUser2 
 	{
 		if ( registeredUsers.containsValue(login) == false ) {
 			registeredUsers.put(login, password);			
 		} else {
-			throw new InvalidUser("User name " + login + " is already in the database");
+			throw new InvalidUser2("User name " + login + " is already in the database");
 		}		
 	}
-
-	/*public String obtenerApartamentos(String url, String token){
-		try{
-			String url = "https://ds2324.arambarri.eus";
-			String apiResponse = conexionAPI.getApiResponse(url);
-			System.out.println("RespuestaAPI: " + apiResponse);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}*/
 	
 
 	public static void main(String[] args) {
@@ -82,7 +69,7 @@ public class Server extends UnicastRemoteObject implements IServer {
 
 		try 
 		{	
-			IServer objServer = new Server();
+			IServer2 objServer = new Server2();
 			Registry registry = LocateRegistry.createRegistry((Integer.valueOf(args[1])));
 			//Naming.rebind(name, objServer);
 			registry.rebind(name, objServer);

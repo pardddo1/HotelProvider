@@ -5,7 +5,7 @@
    	<property name="build.dir" location="bin"/>
 	<property name="dist.dir" location="dist"/>
 	<property name="classpath" location="bin"/>
-	<property name="server.port" value="1099"/> 
+	<property name="server.port" value="2000"/> 
 	<property name="server.IP" value="127.0.0.1"/> 
 	<property name="server.Name" value="HelloServer"/>
 	<property name="policy.file" location="security/java.policy"/>	
@@ -27,7 +27,7 @@
 		<javac srcdir="${source.dir}" destdir="${build.dir}" classpath="${classpath}" deprecation="true" fork="true" includeAntRuntime="no"/>
     </target>
 
-	<target name="client" depends="build" description="Runs the Client">
+	<target name="clientUsuarios" depends="build" description="Runs the Client">
 		<java classname="es.deusto.ingenieria.sd.rmi.client.Client" classpath="${classpath}" fork="true">
 			<jvmarg value="-Djava.security.policy=${policy.file}"/>			
         	<arg value="${server.IP}"/> 
