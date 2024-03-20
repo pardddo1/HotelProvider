@@ -31,5 +31,5 @@ public interface IServer extends Remote
 	 */
 	void registerUser(String login, String password) throws RemoteException, InvalidUser;
 
-	//public String obtenerApartamentos(String url, String token);
+	String obtenerApartamentos() throws RemoteException;
 }

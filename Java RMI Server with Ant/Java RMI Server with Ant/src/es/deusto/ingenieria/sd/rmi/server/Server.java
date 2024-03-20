@@ -7,6 +7,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.server.*;
 import java.util.HashMap;
+//import ApiClient;
 //import Server; //netstat ano | findstr :port
 
 public class Server extends UnicastRemoteObject implements IServer {
@@ -14,7 +15,7 @@ public class Server extends UnicastRemoteObject implements IServer {
 	private static final long serialVersionUID = 1L;
 	private int cont = 0;
 	private HashMap <String, String> registeredUsers = null;
-	//private ConexionAPI conexionAPI;
+	private ApiClient ApiClient;
 
 	protected Server() throws RemoteException 
 	{
@@ -57,15 +58,17 @@ public class Server extends UnicastRemoteObject implements IServer {
 		}		
 	}
 
-	/*public String obtenerApartamentos(String url, String token){
+	@Override
+	public String obtenerApartamentos(){
 		try{
 			String url = "https://ds2324.arambarri.eus";
-			String apiResponse = conexionAPI.getApiResponse(url);
-			System.out.println("RespuestaAPI: " + apiResponse);
+			String token = "0518ee96193abf0dca7b3a46591653eb2b162f3fb2dd6fa681b65b97e3e00243187a1b6839aac73946715fb62719b12a1eb14afc36018935b935c2dbf293448fc98a5cde5a219fc208a3db97489b2c2c479825f212d87658ff3b369e4951b0b3f101ac8d52330262e60846ae80b45b6799c69371e4f47a548053137ada4ec6e5";
+			String apiResponse = ApiClient.getApiResponse(url, token);
+			return apiResponse;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
 
 	public static void main(String[] args) {

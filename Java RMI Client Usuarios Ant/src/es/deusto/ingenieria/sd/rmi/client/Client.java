@@ -30,7 +30,7 @@ public class Client {
 			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
 			//stubServer = (IServer) java.rmi.Naming.lookup(name);
 			stubServer = (IServer) registry.lookup(name);
-			stubServer.obtenerApartamentos(String url, String token);
+			stubServer.obtenerApartamentos();
 			System.out.println("* Message coming from the server: '" + stubServer.sayHello() + "'");
 			
 		} 
